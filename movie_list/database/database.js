@@ -18,15 +18,13 @@ app.get('/movies', (request, response) => {
   .then(data => response.status(200).send(data))
 })
 
-// app.get('/search/:search', (request, response) => {
-//   let query = request.params.search;
-//   movies.map(() => {
-//     if () {
-
-//     }
-//   })
-//   response.status(200).send(results)
-// })
+app.get('/search/:search', (request, response) => {
+  let query = request.params.search;
+  knex('movies')
+  .select('*')
+  .where('title', 'ilike', `%${query}%`)
+  .then(data => response.status(200).send(data))
+})
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)

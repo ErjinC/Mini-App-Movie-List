@@ -12,12 +12,11 @@ const List = () => {
   if(movies !== '') {
     return (
       <div>
-        <p>{movies[0].title}</p>
-        <p>{movies[1].title}</p>
-        <p>{movies[2].title}</p>
-        <p>{movies[3].title}</p>
-        <p>{movies[4].title}</p>
-        <p>{movies[5].title}</p>
+        {movies.map(movie => {
+          return (
+            <p>{movie.title}</p>
+          )
+        })}
       </div>
     )
   }
