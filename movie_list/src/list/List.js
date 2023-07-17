@@ -9,18 +9,18 @@ const List = () => {
       .then(data => setMovies(data))
   }, [movies])
 
-  return (
-
-    <div>
-      <p>{movies[0].title}</p>
-      <p>{movies[1].title}</p>
-      <p>{movies[2].title}</p>
-      <p>{movies[3].title}</p>
-      <p>{movies[4].title}</p>
-      <p>{movies[5].title}</p>
-    </div>
-
-  )
+  if(movies !== '') {
+    return (
+      <div>
+        <p>{movies[0].title}</p>
+        <p>{movies[1].title}</p>
+        <p>{movies[2].title}</p>
+        <p>{movies[3].title}</p>
+        <p>{movies[4].title}</p>
+        <p>{movies[5].title}</p>
+      </div>
+    )
+  }
 }
 
 export default List;

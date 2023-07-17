@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const knex = require('knex')(require('./knexfile.js')[process.env.NODE_ENV||'development'])
 const port = 8081;
 const cors = require("cors");
 
@@ -12,16 +13,20 @@ app.get('/', (request, response) => {
 })
 
 app.get('/movies', (request, response) => {
-  const movies = [
-    {title: 'The Protector'},
-    {title: 'Drunken Master'},
-    {title: 'Ong Bak'},
-    {title: 'The Raid'},
-    {title: 'The Rebel'},
-    {title: 'Ip Man'}
-  ]
-  response.status(200).send(movies)
+  knex('movies')
+  .select('*')
+  .then(data => response.status(200).send(data))
 })
+
+// app.get('/search/:search', (request, response) => {
+//   let query = request.params.search;
+//   movies.map(() => {
+//     if () {
+
+//     }
+//   })
+//   response.status(200).send(results)
+// })
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
