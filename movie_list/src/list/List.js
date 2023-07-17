@@ -5,8 +5,8 @@ const List = () => {
 
   useEffect(() => {
     fetch(`http://localhost:8081/movies`)
-      .then(response => response.json())
-      .then(data => setMovies(data))
+    .then(response => response.json())
+    .then(data => setMovies(data))
   }, [movies])
 
   if(movies !== '') {
@@ -14,7 +14,20 @@ const List = () => {
       <div>
         {movies.map(movie => {
           return (
-            <p>{movie.title}</p>
+            <>
+              <p>{movie.title}</p>
+
+              <button
+                type='button'
+                onClick={() => {
+                  fetch(`http://localhost:8081/movies/${movie.id}`, {method: 'DELETE'})
+                  // .then(() => alert('Deleted Movie!'))
+                  .catch((error) => console.error('Error:', error))
+                }
+              }>
+                Delete Movie
+              </button>
+            </>
           )
         })}
       </div>
